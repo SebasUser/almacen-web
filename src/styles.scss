@@ -1,1 +1,201 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ============ Variables de diseño ============ */
+:root {
+  /* Marca: paleta de Tektronic (tektronicperu.com) */
+  --primary: #00613a;
+  --primary-hover: #004a2c;
+  --primary-soft: #e6f1ec;
+  --cream: #f2e8da;
+
+  /* Neutros */
+  --bg: #f6f6f6;
+  --surface: #ffffff;
+  --border: #e2e2e2;
+  --text: #1c1c1c;
+  --text-muted: #69727d;
+  --sidebar: #191919;
+  --sidebar-text: #b4b4b4;
+  --sidebar-active: #ffffff;
+
+  /* Estados de equipo */
+  --st-disponible: #00613a;
+  --st-disponible-bg: #e3f1ea;
+  --st-alquilado: #b45309;
+  --st-alquilado-bg: #fef3dc;
+  --st-vendido: #475569;
+  --st-vendido-bg: #e9edf2;
+  --st-asignado: #1d6fd1;
+  --st-asignado-bg: #e4f0fd;
+  --st-baja: #c0362c;
+  --st-baja-bg: #fdeaea;
+
+  --danger: #c0362c;
+  --danger-soft: #fdeaea;
+  --success: #00613a;
+
+  /* Forma y sombra */
+  --radius: 10px;
+  --radius-sm: 6px;
+  --shadow: 0 1px 2px rgba(16, 24, 40, 0.06), 0 1px 3px rgba(16, 24, 40, 0.1);
+  --shadow-lg: 0 12px 32px rgba(25, 25, 25, 0.16);
+}
+
+/* ============ Base ============ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { margin: 0; line-height: 1.25; font-weight: 600; }
+h1 { font-size: 22px; }
+h2 { font-size: 18px; }
+h3 { font-size: 15px; }
+p { margin: 0; }
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ============ Layout ============ */
+.page { padding: 28px 32px; max-width: 1400px; margin: 0 auto; }
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.page-header .subtitle { color: var(--text-muted); margin-top: 2px; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+
+.row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.spacer { flex: 1; }
+.muted { color: var(--text-muted); }
+
+/* ============ Botones ============ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 16px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+  background: var(--primary);
+  color: #fff;
+}
+.btn:hover:not(:disabled) { background: var(--primary-hover); }
+.btn:focus-visible { outline: 3px solid var(--primary-soft); outline-offset: 1px; }
+.btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.btn-secondary { background: var(--surface); color: var(--text); border-color: var(--border); }
+.btn-secondary:hover:not(:disabled) { background: var(--bg); }
+
+.btn-danger { background: var(--danger); }
+.btn-danger:hover:not(:disabled) { background: #a42d24; }
+
+.btn-ghost { background: transparent; color: var(--text-muted); }
+.btn-ghost:hover:not(:disabled) { background: var(--bg); color: var(--text); }
+
+.btn-sm { height: 30px; padding: 0 10px; font-size: 13px; }
+
+/* ============ Formularios ============ */
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font-weight: 500; font-size: 13px; }
+.field .hint { color: var(--text-muted); font-size: 12px; }
+.field .error { color: var(--danger); font-size: 12px; }
+
+.input, select.input, textarea.input {
+  height: 38px;
+  width: 100%;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font: inherit;
+  color: var(--text);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+textarea.input { height: auto; padding: 10px 12px; min-height: 84px; resize: vertical; }
+.input::placeholder { color: #98a2b3; }
+.input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-soft); }
+.input.invalid { border-color: var(--danger); }
+
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+
+/* ============ Tablas ============ */
+.table-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow-x: auto;
+}
+table.table { width: 100%; border-collapse: collapse; }
+.table th {
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: #f8f8f8;
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.table td { padding: 12px 16px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.table tbody tr:last-child td { border-bottom: none; }
+.table tbody tr.clickable { cursor: pointer; }
+.table tbody tr.clickable:hover { background: #f8f8f8; }
+.table .code { font-weight: 600; font-variant-numeric: tabular-nums; }
+
+/* ============ Etiquetas de estado ============ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.badge-disponible { color: var(--st-disponible); background: var(--st-disponible-bg); }
+.badge-alquilado  { color: var(--st-alquilado);  background: var(--st-alquilado-bg); }
+.badge-vendido    { color: var(--st-vendido);    background: var(--st-vendido-bg); }
+.badge-asignado   { color: var(--st-asignado);   background: var(--st-asignado-bg); }
+.badge-baja       { color: var(--st-baja);       background: var(--st-baja-bg); }
+.badge-cond-operativo    { color: var(--st-disponible); background: var(--st-disponible-bg); }
+.badge-cond-solo_venta   { color: var(--st-alquilado);  background: var(--st-alquilado-bg); }
+.badge-cond-no_operativo { color: var(--st-baja);       background: var(--st-baja-bg); }
+.badge-cond-por_revisar  { color: var(--st-vendido);    background: var(--st-vendido-bg); }
+
+/* ============ Avisos ============ */
+.alert { padding: 12px 14px; border-radius: var(--radius-sm); font-size: 13px; }
+.alert-error { background: var(--danger-soft); color: var(--danger); border: 1px solid #f5c6c2; }
+.alert-ok { background: var(--st-disponible-bg); color: var(--success); border: 1px solid #b9dccb; }
